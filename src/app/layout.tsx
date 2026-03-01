@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
@@ -27,7 +28,33 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="min-h-screen bg-zinc-50">
+          <header className="border-b border-zinc-300 bg-white">
+            <nav className="mx-auto flex w-full max-w-4xl items-center justify-between px-4 py-3">
+              <Link
+                href="/"
+                className="text-sm font-semibold uppercase tracking-wide text-zinc-800"
+              >
+                ABA Scenario Gym
+              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/"
+                  className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/practice"
+                  className="rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-zinc-700"
+                >
+                  Practice
+                </Link>
+              </div>
+            </nav>
+          </header>
+          {children}
+        </div>
       </body>
     </html>
   );

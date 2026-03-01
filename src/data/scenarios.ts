@@ -3,14 +3,14 @@ import type { Scenario } from '@/types/scenario';
 export const scenarios: Scenario[] = [
   {
     id: 'sd-mo-001',
-    title: 'Snack Before Dinner',
+    title: 'Snack Request Before Lunch',
     topic: 'sd-vs-mo',
     difficulty: 1,
     vignette:
-      'A child has not eaten for several hours. Their parent places crackers on the table and says, "If you ask nicely, you can have one." The child says, "Cracker please," and receives a cracker.',
+      'A student has not had lunch yet and is sitting in class before the lunch period. The teacher places a bag of pretzels on the desk and says, "If you ask appropriately, you can have one." The student says, "Can I have a pretzel?" and the teacher gives them one.',
     learningObjectives: [
       'Distinguish Sd from MO',
-      'Identify relevant antecedents and consequences',
+      'Identify relevant antecedent and consequence variables',
     ],
     questions: [
       {
@@ -19,104 +19,53 @@ export const scenarios: Scenario[] = [
         prompt:
           'What is the most likely motivating operation in this scenario?',
         options: [
-          'The parent statement',
-          'Food deprivation',
-          'Receiving the cracker',
-          'The child saying please',
-        ],
-        correctIndex: 1,
-        rationale:
-          'Food deprivation increases the value of food as reinforcement and evokes relevant behavior.',
-        errorTags: ['confused-sd-with-mo'],
-      },
-      {
-        id: 'q2',
-        type: 'multiple-choice',
-        prompt: 'What is the Sd for asking politely?',
-        options: [
-          'The parent statement',
-          'Food deprivation',
-          'The cracker itself',
-          'The consequence',
-        ],
-        correctIndex: 0,
-        rationale:
-          'The parent statement signals reinforcement is available for the polite request.',
-        errorTags: ['confused-sd-with-mo'],
-      },
-    ],
-    explanation:
-      'The MO is deprivation of food; the Sd is the parent statement indicating reinforcement is available for a specific response.',
-    tags: ['antecedents', 'motivating-operations', 'discriminative-stimulus'],
-  },
-  {
-    id: 'sd-mo-002',
-    title: 'Tablet Time in Sight',
-    topic: 'sd-vs-mo',
-    difficulty: 2,
-    vignette:
-      'A learner has had limited tablet access all day. During session, the therapist places the tablet on a shelf in view and says, "You can have two minutes if you request with your AAC device." The learner uses AAC to request tablet and gets access.',
-    learningObjectives: [
-      'Differentiate value-altering and availability-signaling variables',
-      'Identify the evocative effect of an MO',
-    ],
-    questions: [
-      {
-        id: 'q1',
-        type: 'multiple-choice',
-        prompt: 'Which event most clearly serves as the Sd for AAC requesting?',
-        options: [
-          'Limited tablet access all day',
-          'Tablet visible on the shelf',
-          'Therapist statement about earning two minutes',
-          'Receiving tablet access',
+          'The teacher statement',
+          'The pretzels being visible',
+          'Being hungry before lunch',
+          'Receiving the pretzel',
         ],
         correctIndex: 2,
         rationale:
-          'The statement explicitly signals that reinforcement is available contingent on the AAC request.',
-        errorTags: ['sd-vs-mo-mixup'],
+          'Hunger increases the value of food as reinforcement and makes food-seeking behavior more likely.',
+        errorTags: ['confused-sd-with-mo'],
       },
       {
         id: 'q2',
-        type: 'short-answer',
-        prompt:
-          'Name the MO and explain how it affects behavior in this scenario.',
-        rubric: {
-          requiredConcepts: [
-            'restricted/limited tablet access as EO',
-            'increases value of tablet',
-            'evokes requesting behavior',
-          ],
-          commonMistakes: [
-            'labeling therapist statement as MO',
-            'describing consequence as antecedent variable',
-          ],
-        },
-        sampleAnswer:
-          'The MO is reduced tablet access before session. That deprivation functions as an EO, increasing tablet value and making AAC requesting more likely.',
+        type: 'multiple-choice',
+        prompt: 'What is the Sd for asking appropriately?',
+        options: [
+          'Being hungry before lunch',
+          'The teacher statement',
+          'Eating the pretzel',
+          'The student response',
+        ],
+        correctIndex: 1,
+        rationale:
+          'The teacher statement signals that reinforcement is available for a specific response: asking appropriately.',
+        errorTags: ['confused-sd-with-mo'],
       },
     ],
     explanation:
-      'Limited access establishes tablet as more valuable (MO), while the therapist statement functions as Sd because it indicates reinforcement availability for a specific response.',
-    tags: ['aac', 'establishing-operation', 'antecedent-discrimination'],
+      'Hunger functions as the MO because it increases the value of food. The teacher statement is the Sd because it signals that a pretzel is available if the student emits the correct response.',
+    tags: ['antecedents', 'motivating-operations', 'discriminative-stimulus'],
   },
   {
     id: 'func-001',
-    title: 'Math Worksheet Refusal',
+    title: 'Worksheet Pushed Away',
     topic: 'function',
-    difficulty: 1,
+    difficulty: 2,
     vignette:
-      'When independent math worksheets begin, a student rips the paper. The teacher removes the worksheet and lets the student sit quietly for five minutes.',
+      'Each time independent writing begins, a learner pushes the worksheet onto the floor and groans loudly. Staff usually remove the worksheet for several minutes and tell the learner to calm down before trying again.',
     learningObjectives: [
-      'Identify likely function based on consequence patterns',
-      'Distinguish topography from function',
+      'Identify likely behavioral function from consequence patterns',
+      'Match intervention ideas to function hypotheses',
     ],
     questions: [
       {
         id: 'q1',
         type: 'multiple-choice',
         prompt:
-          'What is the most likely maintaining function of paper ripping?',
+          'What is the most likely maintaining function of pushing the worksheet away?',
         options: [
           'Attention',
           'Escape from task demands',
@@ -125,278 +74,141 @@ export const scenarios: Scenario[] = [
         ],
         correctIndex: 1,
         rationale:
-          'Task removal contingent on behavior suggests negative reinforcement via escape.',
-        errorTags: ['function-identification'],
-      },
-      {
-        id: 'q2',
-        type: 'multiple-choice',
-        prompt: 'Which intervention best matches this hypothesized function?',
-        options: [
-          'Planned ignoring after ripping',
-          'Teach break request and honor it on an appropriate schedule',
-          'Provide free access to toys all day',
-          'Increase social praise during transitions only',
-        ],
-        correctIndex: 1,
-        rationale:
-          'A function-based plan should provide an alternative response for obtaining breaks while reducing escape for problem behavior.',
-        errorTags: ['intervention-function-mismatch'],
-      },
-    ],
-    explanation:
-      'Because the worksheet is removed after ripping, the behavior is likely maintained by escape. A function-based replacement behavior is requesting a break appropriately.',
-    tags: ['escape', 'negative-reinforcement', 'function-based-treatment'],
-  },
-  {
-    id: 'func-002',
-    title: 'Calling Out During Group',
-    topic: 'function',
-    difficulty: 2,
-    vignette:
-      'During circle time, a learner shouts random jokes. Peers laugh and the teacher delivers repeated verbal corrections and eye contact each time.',
-    learningObjectives: [
-      'Analyze socially mediated reinforcement patterns',
-      'Select data-informed function hypotheses',
-    ],
-    questions: [
-      {
-        id: 'q1',
-        type: 'multiple-choice',
-        prompt: 'Most likely function of shouting in this context?',
-        options: [
-          'Escape',
-          'Automatic',
-          'Attention',
-          'Access to activity materials',
-        ],
-        correctIndex: 2,
-        rationale:
-          'The behavior reliably contacts peer and adult attention contingent on shouting.',
+          'The worksheet is removed contingent on the behavior, suggesting escape from demands.',
         errorTags: ['function-identification'],
       },
       {
         id: 'q2',
         type: 'short-answer',
         prompt:
-          'Describe one antecedent strategy and one consequence strategy consistent with an attention function.',
+          'Describe one replacement behavior and one consequence strategy that would fit this function.',
         rubric: {
           requiredConcepts: [
-            'antecedent strategy (e.g., NCR attention, active engagement)',
-            'consequence strategy (e.g., DRA for appropriate bids)',
-            'minimize attention following problem behavior',
+            'replacement behavior such as break request/help request',
+            'reinforce appropriate alternative response',
+            'do not allow worksheet removal to continue following problem behavior alone',
           ],
-          forbiddenConcepts: ['punishment-only plan'],
-          commonMistakes: ['strategy not tied to attention function'],
+          commonMistakes: [
+            'replacement behavior not related to escape',
+            'strategy relies only on punishment',
+            'consequence plan does not match function',
+          ],
         },
         sampleAnswer:
-          'An antecedent strategy is scheduled noncontingent attention before circle starts. A consequence strategy is to reinforce raised-hand comments while providing minimal attention to shouting.',
+          'A good replacement behavior would be teaching the learner to request a break or help. Staff could reinforce that appropriate request while making sure problem behavior does not keep producing the same escape outcome by itself.',
       },
     ],
     explanation:
-      'High-quality social responses occur after shouting, supporting an attention hypothesis. Effective intervention should shift reinforcement to appropriate participation.',
-    tags: ['attention', 'differential-reinforcement', 'classroom'],
+      'Because task removal follows the behavior, escape is the strongest function hypothesis. A function-based plan would teach an appropriate way to access a break or help while reducing reinforcement for pushing the worksheet away.',
+    tags: ['escape', 'negative-reinforcement', 'function-based-treatment'],
   },
   {
     id: 'rein-001',
-    title: 'Token Board for On-Task Behavior',
+    title: 'Functional Communication for Toy Access',
     topic: 'reinforcement',
-    difficulty: 1,
+    difficulty: 2,
     vignette:
-      'A learner earns one token every two minutes of on-task behavior. Five tokens can be exchanged for three minutes of drawing. On-task behavior increases over the week.',
+      'A child often screams when a preferred toy is out of reach. During intervention, staff teach the child to hand over a picture card for the toy. When the child uses the card, staff immediately provide the toy for 30 seconds. Screaming no longer results in toy access.',
     learningObjectives: [
-      'Identify reinforcement contingencies',
-      'Recognize conditioned reinforcer systems',
+      'Identify DRA / functional communication training logic',
+      'Analyze reinforcement of alternative behavior',
     ],
     questions: [
       {
         id: 'q1',
         type: 'multiple-choice',
-        prompt: 'What best describes the function of the token in this setup?',
-        options: [
-          'Unconditioned reinforcer',
-          'Conditioned reinforcer linked to backup reinforcers',
-          'Motivating operation',
-          'Punisher',
-        ],
+        prompt: 'Which procedure is best described in this scenario?',
+        options: ['DRO', 'DRA', 'DRL', 'Response cost'],
         correctIndex: 1,
         rationale:
-          'Tokens acquire value through exchange with drawing time (backup reinforcer).',
-        errorTags: ['reinforcement-concepts'],
-      },
-      {
-        id: 'q2',
-        type: 'multiple-choice',
-        prompt: 'The observed increase in on-task behavior suggests:',
-        options: [
-          'Positive reinforcement may be strengthening on-task responding',
-          'Extinction is occurring',
-          'Response cost is reducing behavior',
-          'No functional relation can ever be inferred',
-        ],
-        correctIndex: 0,
-        rationale:
-          'Contingent token delivery followed by behavior increase is consistent with reinforcement effects.',
-        errorTags: ['contingency-analysis'],
-      },
-    ],
-    explanation:
-      'Tokens serve as conditioned reinforcers, and contingent delivery appears to strengthen on-task behavior through positive reinforcement.',
-    tags: ['token-economy', 'conditioned-reinforcement', 'on-task'],
-  },
-  {
-    id: 'rein-002',
-    title: 'DRA for Functional Communication',
-    topic: 'reinforcement',
-    difficulty: 3,
-    vignette:
-      'A client previously yelled to get snacks. The team teaches a picture-card request. Snack delivery now follows picture requests immediately, while yelling no longer produces snacks.',
-    learningObjectives: [
-      'Analyze differential reinforcement procedures',
-      'Relate extinction plus reinforcement of alternatives',
-    ],
-    questions: [
-      {
-        id: 'q1',
-        type: 'multiple-choice',
-        prompt: 'Which procedure is primarily being used?',
-        options: ['DRO', 'DRA', 'DRL', 'NCR'],
-        correctIndex: 1,
-        rationale:
-          'An alternative response (picture request) is reinforced while problem behavior is not.',
+          'An alternative appropriate response is reinforced while the problem behavior no longer produces reinforcement.',
         errorTags: ['dr-procedures'],
       },
       {
         id: 'q2',
         type: 'short-answer',
         prompt:
-          'Why is immediacy of reinforcement important when teaching the picture-card request?',
+          'Why is immediate toy delivery important when the child uses the picture card?',
         rubric: {
           requiredConcepts: [
             'strengthens response-reinforcer relation',
-            'supports rapid acquisition',
-            'competes with problem behavior history',
+            'supports acquisition of communication response',
+            'helps alternative response compete with screaming history',
           ],
           commonMistakes: [
-            'focuses only on motivation and ignores contingency timing',
+            'focuses only on motivation and not contingency timing',
+            'describes punishment instead of reinforcement',
           ],
         },
         sampleAnswer:
-          'Immediate snack delivery makes the contingency clear and strengthens the new communication response quickly, helping it replace yelling.',
+          'Immediate delivery makes the contingency clear, strengthens the picture-card response quickly, and helps that response compete with the child’s prior history of screaming for toys.',
       },
     ],
     explanation:
-      'This plan uses DRA: reinforce functional communication and withhold reinforcement for yelling, shifting response allocation toward the replacement behavior.',
-    tags: ['dra', 'fct', 'replacement-behavior'],
+      'This is DRA/FCT: reinforce the communication alternative and withhold toy access for screaming. Immediate reinforcement matters because it strengthens the new response efficiently and makes the contingency obvious.',
+    tags: ['dra', 'fct', 'replacement-behavior', 'positive-reinforcement'],
   },
   {
     id: 'meas-001',
-    title: 'Tracking Out-of-Seat Behavior',
+    title: 'Measuring Out-of-Seat Behavior',
     topic: 'measurement',
     difficulty: 1,
     vignette:
-      'A para records each time a student leaves their seat during a 30-minute lesson. Data are reported as 12, 9, 7, and 5 incidents across four days.',
+      'A teacher aide records each time a student leaves their seat during a 20-minute lesson. The recorded counts across four sessions are 10, 8, 7, and 5.',
     learningObjectives: [
-      'Select appropriate basic measurement dimensions',
-      'Interpret count and rate trends',
+      'Identify basic direct measurement systems',
+      'Differentiate frequency from rate',
     ],
     questions: [
       {
         id: 'q1',
         type: 'multiple-choice',
-        prompt: 'Which measurement system is being used directly?',
+        prompt: 'What measurement system is being used directly?',
         options: [
           'Duration',
-          'Frequency count',
           'Latency',
-          'Permanent product',
+          'Frequency',
+          'Whole-interval recording',
         ],
-        correctIndex: 1,
+        correctIndex: 2,
         rationale:
-          'The observer is counting occurrences of out-of-seat events.',
+          'The aide is counting the number of times the behavior occurs.',
         errorTags: ['measurement-system'],
-      },
-      {
-        id: 'q2',
-        type: 'multiple-choice',
-        prompt:
-          'If lesson length stays constant, what additional metric could improve comparability across staff?',
-        options: [
-          'Rate per minute',
-          'Topography checklist only',
-          'IOA eliminated',
-          'Scatterplot without counts',
-        ],
-        correctIndex: 0,
-        rationale:
-          'Rate standardizes frequency by observation time and supports cleaner comparisons.',
-        errorTags: ['rate-vs-frequency'],
-      },
-    ],
-    explanation:
-      'The current data use frequency, and because session duration is known, converting to rate can support clearer interpretation across observers or days.',
-    tags: ['frequency', 'rate', 'classroom-data'],
-  },
-  {
-    id: 'meas-002',
-    title: 'Partial-Interval Recording Debate',
-    topic: 'measurement',
-    difficulty: 3,
-    vignette:
-      'A team uses 15-second partial-interval recording for stereotypy and reports 80% intervals with behavior. Another analyst argues this overestimates occurrence compared with duration recording.',
-    learningObjectives: [
-      'Understand trade-offs among discontinuous measures',
-      'Choose measures aligned with decision needs',
-    ],
-    questions: [
-      {
-        id: 'q1',
-        type: 'multiple-choice',
-        prompt: 'What is a known limitation of partial-interval recording?',
-        options: [
-          'It always underestimates high-rate behavior',
-          'It can overestimate total occurrence because any occurrence scores the interval',
-          'It cannot be used in natural settings',
-          'It directly measures response magnitude',
-        ],
-        correctIndex: 1,
-        rationale:
-          'Any brief instance marks the full interval as an occurrence, which can inflate estimates.',
-        errorTags: ['discontinuous-measurement'],
       },
       {
         id: 'q2',
         type: 'short-answer',
         prompt:
-          'When might duration recording be preferable to partial-interval recording for stereotypy?',
+          'Why might rate be more useful than raw frequency if different staff observe for different lesson lengths?',
         rubric: {
           requiredConcepts: [
-            'need precise estimate of total time engaged',
-            'sufficient resources for continuous timing',
-            'decision-making requires sensitivity to change in duration',
+            'rate accounts for time',
+            'improves comparability across observation periods',
+            'frequency alone can be misleading when durations differ',
           ],
           commonMistakes: [
-            'describes interval systems without comparison rationale',
+            'defines rate incorrectly',
+            'fails to mention differing observation length',
           ],
         },
         sampleAnswer:
-          'Duration is preferable when the team needs accurate total engagement time and can continuously observe, because it is more sensitive than partial-interval estimates.',
+          'Rate would be more useful because it accounts for observation time. If sessions differ in length, raw frequency alone could be misleading, while rate allows better comparison across staff and sessions.',
       },
     ],
     explanation:
-      'Partial-interval can bias estimates upward for some behavior patterns; duration is preferable when precise time-allocation data are needed for treatment decisions.',
-    tags: ['partial-interval', 'duration', 'measurement-bias'],
+      'The current measure is frequency. If observation times vary, converting to rate provides a more standardized and interpretable metric.',
+    tags: ['frequency', 'rate', 'classroom-data', 'direct-measurement'],
   },
   {
     id: 'exp-001',
-    title: 'ABAB for Hand Raising',
+    title: 'Staggered Social Skills Instruction',
     topic: 'experimental-design',
-    difficulty: 2,
+    difficulty: 3,
     vignette:
-      'A BCBA collects baseline hand-raising data, introduces a differential reinforcement intervention, withdraws it, then reintroduces it. Hand raising increases only when intervention is present.',
+      'A clinician targets three social skills: greeting peers, asking to join a game, and giving compliments. Baseline data are collected on all three skills. Intervention begins for greeting peers first while the other two remain in baseline. Later, intervention is introduced to asking to join a game, and finally to giving compliments. Each skill improves only after intervention begins for that specific skill.',
     learningObjectives: [
-      'Identify reversal design logic',
-      'Interpret prediction, verification, and replication',
+      'Identify multiple baseline logic',
+      'Explain why staggered introduction supports experimental control',
     ],
     questions: [
       {
@@ -404,82 +216,38 @@ export const scenarios: Scenario[] = [
         type: 'multiple-choice',
         prompt: 'Which single-case design is described?',
         options: [
-          'Multiple baseline',
-          'Changing criterion',
           'Reversal (ABAB)',
+          'Multiple baseline across behaviors',
           'Alternating treatments',
-        ],
-        correctIndex: 2,
-        rationale:
-          'The sequence baseline-intervention-withdrawal-reintroduction is an ABAB reversal.',
-        errorTags: ['design-identification'],
-      },
-      {
-        id: 'q2',
-        type: 'multiple-choice',
-        prompt: 'What feature strengthens internal validity in this design?',
-        options: [
-          'Using only one phase change',
-          'Replication of effect across intervention phases',
-          'Collecting social validity only',
-          'Random assignment to classrooms',
+          'Changing criterion',
         ],
         correctIndex: 1,
         rationale:
-          'Demonstrating repeated covariation with phase changes supports a functional relation.',
-        errorTags: ['internal-validity'],
-      },
-    ],
-    explanation:
-      'ABAB reversal demonstrates experimental control by showing behavior changes systematically with intervention withdrawal and reintroduction.',
-    tags: ['abab', 'single-case', 'functional-relation'],
-  },
-  {
-    id: 'exp-002',
-    title: 'Multiple Baseline Across Skills',
-    topic: 'experimental-design',
-    difficulty: 3,
-    vignette:
-      'A clinician teaches three social skills. Intervention is introduced to Skill A first, then B, then C, while untreated skills remain at baseline levels until intervention begins for each.',
-    learningObjectives: [
-      'Differentiate multiple baseline from reversal',
-      'Evaluate staggered intervention logic',
-    ],
-    questions: [
-      {
-        id: 'q1',
-        type: 'multiple-choice',
-        prompt: 'What design is this?',
-        options: [
-          'Multiple baseline across behaviors/skills',
-          'Withdrawal design',
-          'Alternating treatments',
-          'Parametric analysis',
-        ],
-        correctIndex: 0,
-        rationale:
-          'Intervention is staggered across independent tiers with replicated effect at each introduction.',
+          'Intervention is introduced in a staggered way across separate skills while untreated skills remain in baseline.',
         errorTags: ['design-identification'],
       },
       {
         id: 'q2',
         type: 'short-answer',
         prompt:
-          'Give one reason to choose multiple baseline instead of reversal in applied settings.',
+          'Give one reason a clinician might choose this design instead of a reversal design.',
         rubric: {
           requiredConcepts: [
-            'ethical/practical concern withdrawing effective treatment',
-            'irreversibility of skill acquisition',
-            'experimental control via staggered starts',
+            'withdrawing treatment may be impractical or unethical',
+            'some learned skills may not reverse cleanly',
+            'staggered starts still permit replicated demonstrations of control',
           ],
-          commonMistakes: ['states preference without design rationale'],
+          commonMistakes: [
+            'states personal preference without design logic',
+            'confuses multiple baseline with simple repeated measurement',
+          ],
         },
         sampleAnswer:
-          'Multiple baseline is useful when withdrawing treatment would be unethical or impossible after skills are learned, while still allowing replicated demonstrations of control.',
+          'A clinician might choose multiple baseline because withdrawing an effective intervention may be impractical or unethical, and some social skills may not reverse once learned. The staggered introduction still allows repeated demonstrations of control.',
       },
     ],
     explanation:
-      'A multiple baseline design can establish a functional relation without withdrawing effective treatment, especially when behaviors are likely irreversible.',
-    tags: ['multiple-baseline', 'ethics', 'staggered-introduction'],
+      'This is a multiple baseline across behaviors/skills design. It is often preferred when withdrawal would be impractical, unethical, or unlikely to produce reversal after learning has occurred.',
+    tags: ['multiple-baseline', 'single-case-design', 'experimental-control'],
   },
 ];
