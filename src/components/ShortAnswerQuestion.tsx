@@ -1,4 +1,4 @@
-import type { ShortAnswerQuestion as ShortAnswerQuestionType } from "@/types/scenario";
+import type { ShortAnswerQuestion as ShortAnswerQuestionType } from '@/types/scenario';
 
 type ShortAnswerQuestionProps = {
   question: ShortAnswerQuestionType;
@@ -9,7 +9,7 @@ type ShortAnswerQuestionProps = {
 
 export default function ShortAnswerQuestion({
   question,
-  response = "",
+  response = '',
   onChange,
   disabled = false,
 }: ShortAnswerQuestionProps) {
@@ -30,7 +30,7 @@ export default function ShortAnswerQuestion({
         value={response}
         onChange={
           // TODO: Connect typing changes to parent state updates.
-          () => {}
+          (e) => onChange(e.target.value)
         }
         disabled={disabled}
         rows={5}

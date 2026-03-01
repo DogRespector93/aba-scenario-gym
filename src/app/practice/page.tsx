@@ -1,28 +1,39 @@
 'use client';
 
+import QuestionRenderer from '@/components/QuestionRenderer';
+import { scenarios } from '@/data/scenarios';
+import { UserAnswer } from '@/types/attempt';
+import { Scenario } from '@/types/scenario';
+import { useCallback, useMemo, useState } from 'react';
+
 export default function PracticePage() {
-  // TODO: Bring back only the imports I actually use once I start wiring state and events.
-  // TODO: Add local state for scenario, answers, submission status, and a future result object.
+  const [answers, setAnswers] = useState<UserAnswer[]>([]);
+
+  const [userAnswer, setUserAnswer] = useState<UserAnswer>();
+  const [scenario, setScenario] = useState<Scenario>();
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const handleAnswerChange = useCallback((next: UserAnswer) => {
+    setAnswers((prev) => {
+      const idx = prev.findIndex(
+        (answer) => answer.questionId === next.questionId,
+      );
+      if (idx === -1) return [...prev, next];
+      return prev.map((answer) =>
+        answer.questionId === next.questionId ? next : answer,
+      );
+    });
+  }, []);
+
+  const answeredCount = useMemo(() => {
+    return scenario?.questions.filter((question) => {
+      answers.some((answer) => answer.questionId === question.id);
+    }).length;
+  }, [answers, scenario?.questions]);
+  //TODO - useState with future result object
+  // const [result, setResult] = useState(initial);
+
   // TODO: Add derived values for progress display (answered count vs total questions).
   // TODO: Implement three handlers: answer updates, submit flow, and next-scenario reset.
-
-  // Temporary preview data so I can style the page first.
-  const scenario = {
-    title: 'Scenario Title Placeholder',
-    topic: 'sd-vs-mo',
-    difficulty: 1,
-    learningObjectives: [
-      'Learning objective placeholder A',
-      'Learning objective placeholder B',
-    ],
-    vignette:
-      'Scenario vignette placeholder. This box is intentionally styled now so I can focus on state wiring later.',
-    questions: [{ id: 'q-1' }, { id: 'q-2' }],
-  };
-  const answerCount = 0;
-  const questionCount = scenario.questions.length;
-  const isSubmitted = false;
-  const result = null;
 
   if (!scenario) {
     return (
@@ -32,10 +43,33 @@ export default function PracticePage() {
           <p className="mt-2 text-sm text-zinc-700">
             No scenarios available yet.
           </p>
+          <button
+            type="button"
+            className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2"
+            //TODO - Eventually, this will allow selecting scenarios. Currently, it auto populates scenario 1.
+            onClick={() => setScenario(scenarios[1])}
+          ></button>
         </section>
       </main>
     );
   }
+  // Temporary preview data so I can style the page first.
+  // const scenario = {
+  //   title: 'Scenario Title Placeholder',
+  //   topic: 'sd-vs-mo',
+  //   difficulty: 1,
+  //   learningObjectives: [
+  //     'Learning objective placeholder A',
+  //     'Learning objective placeholder B',
+  //   ],
+  //   vignette:
+  //     'Scenario vignette placeholder. This box is intentionally styled now so I can focus on state wiring later.',
+  //   questions: [{ id: 'q-1' }, { id: 'q-2' }],
+  // };
+  const answerCount = 0;
+  const questionCount = scenario.questions.length;
+  const isSubmitted = false;
+  const result = null;
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-4xl px-4 py-8 md:py-10">
@@ -88,6 +122,9 @@ export default function PracticePage() {
 
           <div className="mt-4 space-y-6">
             {scenario.questions.map((question, index) => {
+              const answerForQuestion = answers.find(
+                (answer) => answer.questionId === question.id,
+              );
               // TODO: In real data flow, each question row should read and write its own answer entry.
 
               return (
@@ -100,8 +137,13 @@ export default function PracticePage() {
                   </p>
 
                   <div className="rounded-md border border-dashed border-zinc-300 bg-white p-4 text-sm text-zinc-600">
-                    TODO: Render question input UI here and connect it to local
-                    answer state.
+                    <QuestionRenderer
+                      question={question}
+                      answer={answerForQuestion}
+                      onAnswerChange={handleAnswerChange}
+                      //disabled={submitted}
+                      //showFeedback={submitted}
+                    />
                   </div>
                 </article>
               );
@@ -113,12 +155,14 @@ export default function PracticePage() {
           <button
             type="button"
             className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2"
+            onClick={() => setSubmitted(true)}
           >
             Submit Answers
           </button>
           <button
             type="button"
             className="rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-800 transition hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500 focus-visible:ring-offset-2"
+            onClick={() => setScenario(scenarios[2])}
           >
             Next Scenario
           </button>
