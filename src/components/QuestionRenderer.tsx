@@ -20,6 +20,7 @@ export default function QuestionRenderer({
 }: QuestionRendererProps) {
   void showFeedback;
   switch (question.type) {
+    
     case 'multiple-choice': {
       const selectedIndex =
         answer?.type === 'multiple-choice' ? answer.selectedIndex : undefined;

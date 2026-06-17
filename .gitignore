@@ -42,5 +42,6 @@ next-env.d.ts
 
 
 #Ignore vscode AI rules
-.github\instructions\codacy.instructions.md
-.github/instructions/codacy.instructions.md
+.github/instructions/
+.github/skills
+.github/agents
